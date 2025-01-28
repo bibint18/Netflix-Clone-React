@@ -6,7 +6,7 @@ import profile_img from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
 import { useEffect, useRef } from 'react'
 import { logout } from '../../firebase'
-function Navbar() {
+function Navbar({setSearch}) {
   const navRef = useRef();
   useEffect(() => {
     window.addEventListener('scroll',() => {
@@ -32,7 +32,11 @@ function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <img src={search_icon} alt="" className='icons' />
+      <div className='searchbar'>
+          <input type="text" placeholder='Search here...' onChange={(e) => setSearch(e.target.value)}/>
+          <img src={search_icon} alt="search icon" className='icons' onClick={()=>setSearch("")}/>
+        </div>
+        {/* <img src={search_icon} alt="" className='icons' /> */}
         <img src={bell_icon} alt="" className='icons' />
         <div className="navbar-profile">
         <img src={profile_img} alt="" className='profile' />

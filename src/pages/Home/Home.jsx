@@ -6,11 +6,21 @@ import play_icon from '../../assets/play_icon.png'
 import info_icon from '../../assets/info_icon.png'
 import TitleCards from '../../components/TitleCards/TitleCards'
 import Footer from '../../components/Footer/Footer'
-
+import Search from '../../components/Search/Search.jsx'
+import { useState } from 'react'
 function Home() {
+  const [search, setSearch] = useState("");
+  if (search!="") {
+    return(
+      <div>
+        <Navbar setSearch={setSearch} />
+        <Search search={search}/>
+      </div>
+    )
+  }
   return (
-    <div className='home'>
-      <Navbar/>
+    <div className='home' >
+      <Navbar setSearch={setSearch}/>
       <div className="hero">
         <img src={hero_banner} alt="" className='banner-img' />
         <div className="hero-caption">

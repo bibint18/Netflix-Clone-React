@@ -1,15 +1,11 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut ,GoogleAuthProvider} from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
 import { toast } from "react-toastify";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDtBv64GG8_niCF-xgOUUGnh48YcdLl858",
   authDomain: "netflix-clone-73f7c.firebaseapp.com",
@@ -22,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+
 
 const auth = getAuth(app)
 const db = getFirestore(app)
@@ -57,5 +53,5 @@ const logout = () => {
   signOut(auth)
 }
 
-
+export const googleProvider = new GoogleAuthProvider()
 export {auth,db,login,signup,logout}

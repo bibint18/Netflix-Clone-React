@@ -1,14 +1,23 @@
 import './Login.css'
 import logo from '../../assets/logo.png'
 import { useState } from 'react'
-import { login,signup } from '../../firebase'
+import { login,signup,googleProvider,auth } from '../../firebase'
 import netflix_spinner from '../../assets/netflix_spinner.gif'
+import { signInWithPopup } from 'firebase/auth'
 function Login() {
   const [signState,setSignState] = useState("Sign In")
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [loading,setLoading] = useState(false)
+
+  const googleSignin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const user_auth = async (e) => {
     e.preventDefault()
@@ -46,6 +55,7 @@ function Login() {
           </div>
         </form>
         <div className="form-switch">
+          <p onClick={googleSignin}>Sign in With Google</p>
           {signState==='Sign In' ? <p>New to Netflix? <span onClick={ () => {setSignState('Sign Up')}}>Sign Up Now</span></p> : <p>Already have account? <span onClick={() => {setSignState('Sign In')}} >Sign in Now</span></p> } 
           
           
